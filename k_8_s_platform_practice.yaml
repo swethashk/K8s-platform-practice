@@ -1,0 +1,70 @@
+# Kubernetes Platform Engineer Practice Lab
+
+## Folder Structure (GitOps-Ready)
+
+infrastructure/
+├── cluster/                 # Terraform, EKS/GKE config, Kind setups
+├── base/                    # K8s base configs (network, storage, RBAC)
+└── overlays/
+    ├── dev/                # Dev-specific overrides
+    └── prod/               # Prod-specific overrides
+
+apps/
+├── hello-world/            # Basic app deployment
+│   ├── deployment.yaml
+│   ├── service.yaml
+│   └── kustomization.yaml
+├── nginx/
+│   ├── helm-values.yaml
+│   └── README.md
+└── observability/
+    ├── prometheus/
+    ├── grafana/
+    └── fluentbit/
+
+scripts/
+├── install-helm.sh         # Installs Helm
+├── deploy-dev.sh           # Apply dev overlays
+└── check-health.sh         # Liveness/readiness checks
+
+README.md
+
+---
+
+# README.md (Partial)
+
+## 🚀 Kubernetes Platform Engineer Lab
+
+### ✅ Prerequisites
+- kubectl
+- Kind or Minikube
+- Helm
+- kustomize
+
+### 🧪 Practice Scenarios
+
+#### 1. Deploy Hello World
+```bash
+kubectl apply -k apps/hello-world/
+```
+
+#### 2. Install NGINX via Helm
+```bash
+helm repo add bitnami https://charts.bitnami.com/bitnami
+helm install nginx bitnami/nginx -f apps/nginx/helm-values.yaml
+```
+
+#### 3. Enable Observability Stack
+```bash
+kubectl apply -k apps/observability/
+```
+
+#### 4. Resource Limits & Probes
+Update `apps/hello-world/deployment.yaml` with `resources` and `livenessProbe`
+
+#### 5. NetworkPolicy Practice
+Add and test deny-all policy, then allow specific pod traffic
+
+---
+
+🎯 Track your progress in a Notion table or simple checklist!
